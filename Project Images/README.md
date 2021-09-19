@@ -44,7 +44,7 @@
 <img src="All%20Time.jpeg"  >
 </div>
 
-## Seach Bar
+## Holidays Page
 
 <div>
 <img src="Holidays%20Page.png"  >
@@ -55,5 +55,5 @@
 
 <div>
 <img src="Mail%20Gönderimi%202.png"  >
-<img src="Mail%20Gönderimi.jpg"   >
+<img src="Mail%20Gönderimi.jpg"  width="300px" >
 </div>
