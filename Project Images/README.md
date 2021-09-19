@@ -55,5 +55,5 @@
 
 <div>
 <img src="Mail%20Gönderimi%202.png"  >
-<img src="Mail%20Gönderimi.jpg"  width="800px" >
+<img src="Mail%20Gönderimi.jpg"  width="500px" >
 </div>
