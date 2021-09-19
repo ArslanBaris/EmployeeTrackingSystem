@@ -1,0 +1,131 @@
+﻿@model EmployeeTrackingSystem.Models.MyModels.DocumentModel
+
+
+@{
+    ViewBag.Title = "Calculate";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="form-group">
+
+    <div class="panel panel-primary" id="left" style="width:280px;  margin-top:20px; ">
+        <div class="panel-heading" style="text-align:center">
+            <h3 class="panel-title">Employee</h3>
+        </div>
+        <div class="panel-body" style="height:480px">
+            <div>
+                <label class="form-group">ID</label>
+                @Html.TextBoxFor(m => m.Employee.EmployeeID, new { @class = "form-control", @readonly = "readonly" })
+                <br />
+                <label class="form-group">Name</label>
+                @Html.TextBoxFor(m => m.Employee.EmployeeName, new { @class = "form-control", @readonly = "readonly" })
+                <br />
+                <label class="form-group">Surname</label>
+                @Html.TextBoxFor(m => m.Employee.EmployeeSurname, new { @class = "form-control", @readonly = "readonly" })
+                <br />
+                <label class="form-group">Department</label>
+                @Html.TextBoxFor(m => m.Employee.Department1.DepartmentName, new { @class = "form-control", @readonly = "readonly" })
+                <br />
+                <label class="form-group">Phone</label>
+                @Html.TextBoxFor(m => m.Employee.Phone, new { @class = "form-control", @readonly = "readonly" })
+                <br />
+            </div>
+
+        </div>
+    </div>
+    <div class="panel panel-primary" id="right" style="width:650px;margin-left:150px;  margin-top:20px; ">
+        <div class="panel-heading" style="text-align:center">
+            <h3 class="panel-title">Durum</h3>
+        </div>
+        <div class="panel-body" style="height:120px">
+            <div style="width:100%">
+                <label style="margin-left:11%" class="form-group">Eksik Mesai Toplamı</label>
+                <label id="one" style="margin-left:9%" class="form-group">Fazla Mesai Toplamı</label>
+                <label id="two" style="margin-left:15%" class="form-group">Durum</label>
+            </div>
+            <div style="margin-top:5px;width:100%;font-weight:bold;">
+                @Html.TextBox("littleTime", (object)@ViewBag.litleTime, new { @class = "form-control", @id = "left", @readonly = "readonly", @style = "text-align:center;width:120px; margin-left:12%;background-color:rgba(255, 110, 100, 0.71)" })
+                @Html.TextBox("overTime", (object)@ViewBag.overTime, new { @class = "form-control", @id = "left", @readonly = "readonly", @style = "text-align:center;width:120px; margin-left:12%;background-color:rgba(132, 254, 3, 0.73)" })
+                @Html.TextBox("total", (object)@ViewBag.total, new { @class = "form-control", @id = "right", @readonly = "readonly", @style = "text-align:center;width:120px; margin-left:12%;background-color:rgba(115, 181, 252, 0.73)" })
+            </div>
+
+        </div>
+    </div>
+
+    <div style="width:780px; margin-left:80px;margin-top:30px" id="right">
+        <table id="tbl1" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th style="text-align:center">Shift ID</th>
+                    <th style="text-align:center">Entry Time</th>
+                    <th style="text-align:center">Exit Time</th>
+                    <th style="text-align:center">Over Time</th>
+                    <th style="text-align:center">Mising Time</th>
+                    <th style="text-align:center">Shift Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var s in Model.ListOfShift)
+                {
+                    if (s.MissingTime.ToString().Equals("00:00:00") && s.OverTime.ToString().Equals("00:00:00"))
+                    {
+                        <tr>
+                            <td style="text-align:center">@s.ShiftID</td>
+                            <td style="text-align:center">@s.EntryTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.ExitTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.OverTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.MissingTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.ShiftDate.ToString().Substring(0, 10)</td>
+                        </tr>
+                    }
+                    else if (s.MissingTime.ToString().Equals("00:00:00"))
+                    {
+                        <tr style="background-color:rgba(132, 254, 3, 0.73)">
+                            <td style="text-align:center">@s.ShiftID</td>
+                            <td style="text-align:center">@s.EntryTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.ExitTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center;font-weight:bold;font-size:large">@s.OverTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.MissingTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.ShiftDate.ToString().Substring(0, 10)</td>
+                        </tr>
+                    }
+                    else if (s.OverTime.ToString().Equals("00:00:00"))
+                    {
+                        <tr style="background-color:rgba(255, 110, 100, 0.89)">
+                            <td style="text-align:center">@s.ShiftID</td>
+                            <td style="text-align:center">@s.EntryTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.ExitTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.OverTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center;font-weight:bold;font-size:large">@s.MissingTime.ToString().Substring(0, 5)</td>
+                            <td style="text-align:center">@s.ShiftDate.ToString().Substring(0, 10)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+
+@section styles{
+
+    <link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+<script>
+    $('#tbl1').DataTable();
+</script>

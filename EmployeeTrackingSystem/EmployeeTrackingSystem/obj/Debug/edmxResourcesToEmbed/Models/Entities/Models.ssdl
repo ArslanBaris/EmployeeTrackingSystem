@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonelTakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAdi" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Parola" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MesaiHareketleri">
+    <Key>
+      <PropertyRef Name="MesaiID" />
+    </Key>
+    <Property Name="MesaiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonelID" Type="int" Nullable="false" />
+    <Property Name="MesaiTarihi" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="GirisSaat" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CikisSaat" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="GunlukMesai" Type="float" />
+    <Property Name="NormalMesai" Type="float" />
+    <Property Name="FazlaMesai" Type="float" />
+    <Property Name="EksikMesai" Type="float" />
+    <Property Name="Donem" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="PersonelID" />
+    </Key>
+    <Property Name="PersonelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TCKN" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="PersonelAd" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PersonelSoyad" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Telefon" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Adres" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Departman" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Durum" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="IBAN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="SabitMaas" Type="money" Nullable="false" />
+    <Property Name="GirisTarihi" Type="datetime" Nullable="false" />
+    <Property Name="CikisTarihi" Type="datetime" Nullable="false" />
+    <Property Name="GunlukMesai" Type="int" Nullable="false" />
+    <Property Name="ToplamRaporlu" Type="float" Nullable="false" />
+    <Property Name="ToplamUcretli" Type="float" Nullable="false" />
+    <Property Name="ToplamUcretsiz" Type="float" Nullable="false" />
+    <Property Name="ToplamAlacak" Type="float" Nullable="false" />
+    <Property Name="ToplamBorc" Type="float" Nullable="false" />
+    <Property Name="Silindi" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_MesaiHareketleri_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+    <End Role="MesaiHareketleri" Type="Self.MesaiHareketleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="MesaiHareketleri">
+        <PropertyRef Name="PersonelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonelTakipModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MesaiHareketleri" EntityType="Self.MesaiHareketleri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_MesaiHareketleri_Personel" Association="Self.FK_MesaiHareketleri_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="MesaiHareketleri" EntitySet="MesaiHareketleri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

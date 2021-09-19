@@ -1,0 +1,31 @@
+﻿@model EmployeeTrackingSystem.Models.Entities.Employees
+@{
+    /**/
+
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="panel panel-success" style="width:350px; margin-left:auto;margin-right:auto; margin-top:20px; ">
+    <div class="panel-heading" style="text-align:center;border-color:#014f00">
+        <h3 class="panel-title" style="font-size:large; font-weight:bold;font-family:'Times New Roman'">LOGIN</h3>
+    </div>
+    <div class="panel-body" style="width:250px; margin-top:20px;margin-left:50px">
+        <div>
+            @using (Html.BeginForm("Login", "Security", FormMethod.Post))
+            {
+                <div>
+                    <label class="form form-group"> Prodma ID</label>
+                    @Html.TextBoxFor(m => m.ProdmaID, new { @class = "form-control", required = "", placeholder = "Username", autocomplete = "off" })
+                    <br />
+                    <label class="form-group">Password</label>
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "", placeholder = "Password", autocomplete = "off" })
+                    <br />
+                    @Html.Label("", (string)@ViewBag.message, new { @style = "color:red" })
+                </div>
+                <div style="margin-top:15px; margin-left:155px ">
+                    <button class="btn btn-success" style="font-size:medium;">Login</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

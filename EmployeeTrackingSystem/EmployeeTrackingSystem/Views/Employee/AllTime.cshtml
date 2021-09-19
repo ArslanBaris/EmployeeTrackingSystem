@@ -1,0 +1,100 @@
+﻿@model EmployeeTrackingSystem.Models.MyModels.DocumentModel
+
+@{
+    /**/
+
+    ViewBag.Title = "AllTime";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<p><br /></p>
+
+<table id="tbl2" class="table table-bordered" style="text-align:center">
+    <thead>
+        <tr>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">Name</th>
+            <th style="text-align:center">Surname</th>
+            <th style="text-align:center">Department</th>
+            <th style="text-align:center">Entry</th>
+            <th style="text-align:center">Exit</th>
+            <th style="text-align:center">Missing</th>
+            <th style="text-align:center">Over</th>
+            <th style="text-align:center">Period</th>
+            <th style="text-align:center">Date</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var p in Model.ListOfShift)
+        {
+            if (p.MissingTime.ToString().Equals("00:00:00") && p.OverTime.ToString().Equals("00:00:00"))
+            {
+                <tr>
+                    <td>@p.Employees.EmployeeID</td>
+                    <td>@p.Employees.EmployeeName</td>
+                    <td>@p.Employees.EmployeeSurname</td>
+                    <td>@p.Employees.Department1.DepartmentName</td>
+                    <td>@p.EntryTime</td>
+                    <td>@p.ExitTime</td>
+                    <td>@p.OverTime.ToString().Substring(0, 5)</td>
+                    <td>@p.MissingTime.ToString().Substring(0, 5)</td>
+                    <td>@p.Period</td>
+                    <td>@p.ShiftDate.ToString().Substring(0, 10)</td>
+                </tr>
+            }
+            else if (p.MissingTime.ToString().Equals("00:00:00"))
+            {
+                <tr style="background-color:rgba(132, 254, 3, 0.73)">
+                    <td>@p.Employees.EmployeeID</td>
+                    <td>@p.Employees.EmployeeName</td>
+                    <td>@p.Employees.EmployeeSurname</td>
+                    <td>@p.Employees.Department1.DepartmentName</td>
+                    <td>@p.EntryTime</td>
+                    <td>@p.ExitTime</td>
+                    <td style="font-weight:bold;font-size:large">@p.OverTime.ToString().Substring(0, 5)</td>
+                    <td>@p.MissingTime.ToString().Substring(0, 5)</td>
+                    <td>@p.Period</td>
+                    <td>@p.ShiftDate.ToString().Substring(0, 10)</td>
+
+                </tr>
+            }
+            else if (p.OverTime.ToString().Equals("00:00:00"))
+            {
+                <tr style="text-align:center; background-color:rgba(255, 110, 100, 0.89)">
+                    <td>@p.Employees.EmployeeID</td>
+                    <td>@p.Employees.EmployeeName</td>
+                    <td>@p.Employees.EmployeeSurname</td>
+                    <td>@p.Employees.Department1.DepartmentName</td>
+                    <td>@p.EntryTime</td>
+                    <td>@p.ExitTime</td>
+                    <td>@p.OverTime.ToString().Substring(0, 5)</td>
+                    <td style="font-weight:bold;font-size:large">@p.MissingTime.ToString().Substring(0, 5)</td>
+                    <td>@p.Period</td>
+                    <td>@p.ShiftDate.ToString().Substring(0, 10)</td>
+                </tr>
+            }
+
+        }
+    </tbody>
+</table>
+
+
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+
+
+<script>
+    $('#tbl2').DataTable();
+</script>
+@section styles{
+
+    <link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
+}

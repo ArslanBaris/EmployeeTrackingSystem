@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PersonelTakipModelStoreContainer" CdmEntityContainer="PersonelTakipEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="PersonelTakipModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="KullaniciAdi" ColumnName="KullaniciAdi" />
+          <ScalarProperty Name="Parola" ColumnName="Parola" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MesaiHareketleri">
+      <EntityTypeMapping TypeName="PersonelTakipModel.MesaiHareketleri">
+        <MappingFragment StoreEntitySet="MesaiHareketleri">
+          <ScalarProperty Name="MesaiID" ColumnName="MesaiID" />
+          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="MesaiTarihi" ColumnName="MesaiTarihi" />
+          <ScalarProperty Name="GirisSaat" ColumnName="GirisSaat" />
+          <ScalarProperty Name="CikisSaat" ColumnName="CikisSaat" />
+          <ScalarProperty Name="GunlukMesai" ColumnName="GunlukMesai" />
+          <ScalarProperty Name="NormalMesai" ColumnName="NormalMesai" />
+          <ScalarProperty Name="FazlaMesai" ColumnName="FazlaMesai" />
+          <ScalarProperty Name="EksikMesai" ColumnName="EksikMesai" />
+          <ScalarProperty Name="Donem" ColumnName="Donem" />
+          <ScalarProperty Name="Silindi" ColumnName="Silindi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Personel">
+      <EntityTypeMapping TypeName="PersonelTakipModel.Personel">
+        <MappingFragment StoreEntitySet="Personel">
+          <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+          <ScalarProperty Name="TCKN" ColumnName="TCKN" />
+          <ScalarProperty Name="PersonelAd" ColumnName="PersonelAd" />
+          <ScalarProperty Name="PersonelSoyad" ColumnName="PersonelSoyad" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Departman" ColumnName="Departman" />
+          <ScalarProperty Name="Durum" ColumnName="Durum" />
+          <ScalarProperty Name="IBAN" ColumnName="IBAN" />
+          <ScalarProperty Name="SabitMaas" ColumnName="SabitMaas" />
+          <ScalarProperty Name="GirisTarihi" ColumnName="GirisTarihi" />
+          <ScalarProperty Name="CikisTarihi" ColumnName="CikisTarihi" />
+          <ScalarProperty Name="GunlukMesai" ColumnName="GunlukMesai" />
+          <ScalarProperty Name="ToplamRaporlu" ColumnName="ToplamRaporlu" />
+          <ScalarProperty Name="ToplamUcretli" ColumnName="ToplamUcretli" />
+          <ScalarProperty Name="ToplamUcretsiz" ColumnName="ToplamUcretsiz" />
+          <ScalarProperty Name="ToplamAlacak" ColumnName="ToplamAlacak" />
+          <ScalarProperty Name="ToplamBorc" ColumnName="ToplamBorc" />
+          <ScalarProperty Name="Silindi" ColumnName="Silindi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

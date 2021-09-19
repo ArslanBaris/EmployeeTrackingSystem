@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PersonelTakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAdi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Parola" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MesaiHareketleri">
+    <Key>
+      <PropertyRef Name="MesaiID" />
+    </Key>
+    <Property Name="MesaiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonelID" Type="Int32" Nullable="false" />
+    <Property Name="MesaiTarihi" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GirisSaat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CikisSaat" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="GunlukMesai" Type="Double" />
+    <Property Name="NormalMesai" Type="Double" />
+    <Property Name="FazlaMesai" Type="Double" />
+    <Property Name="EksikMesai" Type="Double" />
+    <Property Name="Donem" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Silindi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Personel" Relationship="Self.FK_MesaiHareketleri_Personel" FromRole="MesaiHareketleri" ToRole="Personel" />
+  </EntityType>
+  <EntityType Name="Personel">
+    <Key>
+      <PropertyRef Name="PersonelID" />
+    </Key>
+    <Property Name="PersonelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TCKN" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PersonelAd" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PersonelSoyad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Adres" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Departman" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Durum" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IBAN" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SabitMaas" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="GirisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CikisTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GunlukMesai" Type="Int32" Nullable="false" />
+    <Property Name="ToplamRaporlu" Type="Double" Nullable="false" />
+    <Property Name="ToplamUcretli" Type="Double" Nullable="false" />
+    <Property Name="ToplamUcretsiz" Type="Double" Nullable="false" />
+    <Property Name="ToplamAlacak" Type="Double" Nullable="false" />
+    <Property Name="ToplamBorc" Type="Double" Nullable="false" />
+    <Property Name="Silindi" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MesaiHareketleri" Relationship="Self.FK_MesaiHareketleri_Personel" FromRole="Personel" ToRole="MesaiHareketleri" />
+  </EntityType>
+  <Association Name="FK_MesaiHareketleri_Personel">
+    <End Role="Personel" Type="Self.Personel" Multiplicity="1" />
+    <End Role="MesaiHareketleri" Type="Self.MesaiHareketleri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Personel">
+        <PropertyRef Name="PersonelID" />
+      </Principal>
+      <Dependent Role="MesaiHareketleri">
+        <PropertyRef Name="PersonelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PersonelTakipEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="MesaiHareketleri" EntityType="Self.MesaiHareketleri" />
+    <EntitySet Name="Personel" EntityType="Self.Personel" />
+    <AssociationSet Name="FK_MesaiHareketleri_Personel" Association="Self.FK_MesaiHareketleri_Personel">
+      <End Role="Personel" EntitySet="Personel" />
+      <End Role="MesaiHareketleri" EntitySet="MesaiHareketleri" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

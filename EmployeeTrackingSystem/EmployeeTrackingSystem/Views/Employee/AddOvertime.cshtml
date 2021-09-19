@@ -1,0 +1,96 @@
+﻿@model EmployeeTrackingSystem.Models.MultipleModels.EmployeeViewModel
+
+
+@{
+    ViewBag.Title = "AddOvertime";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("AddOvertime", "Employee", FormMethod.Post))
+{
+    <div class="form-group">
+        <div style="width:350px;" id="left">
+            <label class="form-group">ID</label>
+            @Html.TextBoxFor(m => m.Employee.EmployeeID, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+            <label class="form-group">Name</label>
+            @Html.TextBoxFor(m => m.Employee.EmployeeName, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+            <label class="form-group">Surname</label>
+            @Html.TextBoxFor(m => m.Employee.EmployeeSurname, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+            <label class="form-group">Department</label>
+            @Html.TextBoxFor(m => m.Employee.Department1.DepartmentName, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+            <label class="form-group">Phone</label>
+            @Html.TextBoxFor(m => m.Employee.Phone, new { @class = "form-control", @readonly = "readonly" })
+            <br />
+        </div>
+
+        <div style="width:350px;margin-left:80px" id="right">
+            <label class="form-group" style="margin-top:30px; ">Date</label>
+            <br />
+            @Html.TextBoxFor(m => m.Shift.ShiftDate, "", new { @class = "form-control", style = "background: #ffffff ", autocomplete = "off", id = "SelectedDate" })
+            <br />
+            <label class="form-group" style="margin-top:15px">Giriş Saati</label>
+            <br />
+            <div>
+                <div class="one">
+                    @Html.DropDownListFor(m => m.Time.EHour, (List<SelectListItem>)ViewBag.hour, "ss", new { @class = "form-control", style = "width:70px" })
+                </div>
+                <div class="two" style="margin-left:80px">
+                    @Html.DropDownListFor(m => m.Time.EMinute, (List<SelectListItem>)ViewBag.minute, "dd", new { @class = "form-control", style = "width:70px" })
+                </div>
+            </div>
+            <br />
+            <label class="form-group">Çıkış Saati</label>
+            <br />
+            <div>
+                <div class="one">
+                    @Html.DropDownListFor(m => m.Time.XHour, (List<SelectListItem>)ViewBag.hour, "ss", new { @class = "form-control", style = "width:70px" })
+                </div>
+                <div class="two" style="margin-left:80px">
+                    @Html.DropDownListFor(m => m.Time.XMinute, (List<SelectListItem>)ViewBag.minute, "dd", new { @class = "form-control", style = "width:70px" })
+                </div>
+            </div>
+            <div style="margin-top:30px;margin-left:30%">
+                @*<input style="margin-top:10px; width:80px;" type="submit" value="Save" class="btn btn-primary" />*@
+                <button class="btn btn-info">Add</button>
+            </div>
+
+        </div>
+
+    </div>
+
+}
+@section styles{
+
+    <link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
+}
+
+<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
+      media="screen" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" type="text/css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#SelectedDate').datepicker({
+            changeMonth: true,
+            changeYear: true,
+            format: "yyyy-mm-dd",
+            language: "tr"
+        });
+    });
+</script>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message");
+            });
+    </script>
+}

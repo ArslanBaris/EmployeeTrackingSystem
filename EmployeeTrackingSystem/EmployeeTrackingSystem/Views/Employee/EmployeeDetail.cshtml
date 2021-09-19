@@ -1,0 +1,42 @@
+﻿@model EmployeeTrackingSystem.Models.Entities.Employees
+
+
+<div class="col-md-12">
+    <div>
+        <label>ID</label>
+        <br />
+        @Html.TextBoxFor(m => m.EmployeeID, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>T.C.</label>
+        <br />
+        @Html.TextBoxFor(m => m.NationalityID, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>Name</label>
+        <br />
+        @Html.TextBoxFor(m => m.EmployeeName, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>Lastname</label>
+        <br />
+        @Html.TextBoxFor(m => m.EmployeeSurname, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>Department</label>
+        <br />
+        @Html.TextBoxFor(m => m.Department1.DepartmentName, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>Phone</label>
+        <br />
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>Shift</label>
+        <br />
+        @Html.TextBoxFor(m => m.NormalShiftTime, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+        <label>Salary</label>
+        <br />
+        @Html.TextBoxFor(m => m.Salary, new { @class = "form-control", disabled = "disabled", style = "background:#ffffff;" })
+        <br />
+    </div>
+    
+</div>
+
+

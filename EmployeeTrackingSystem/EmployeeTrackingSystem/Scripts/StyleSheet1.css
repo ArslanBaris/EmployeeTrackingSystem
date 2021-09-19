@@ -1,0 +1,43 @@
+﻿.list-group {
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.main {
+    flex: 1 1 0; /* flex: 1, which you had before, is equivalent but doesn't work */
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+#left {
+    float: left;
+    width: 75 %;
+    overflow: hidden;
+}
+
+#right {
+    float: left;
+    width: 25 %;
+    overflow: hidden;
+}
+
+.bas {
+    width: 80%;
+    height: 50px;
+    background: aqua;
+    margin: auto;
+    padding: 10px;
+}
+
+.one {
+    width: 15%;
+    height: auto;
+    float: left;
+}
+
+.two {
+    margin-left: 15%;
+    height: auto;
+}
